@@ -9,12 +9,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 #--------------------------------------------------------------------------
 
-include_directories(/opt/vc/include )
-include_directories(/opt/vc/include/interface/vcos/pthreads)
-include_directories(/opt/vc/include/interface/vmcs_host/linux)
-
-#--------------------------------------------------------------------------
-
 add_executable(serialnumber_cpuinfo serialnumber_cpuinfo.c)
 
 #--------------------------------------------------------------------------
@@ -27,6 +21,9 @@ add_executable(serialnumber_mailbox serialnumber_mailbox.c)
 
 #--------------------------------------------------------------------------
 
-add_executable(serialnumber_vcgencmd serialnumber_vcgencmd.c)
-target_link_libraries(serialnumber_vcgencmd /opt/vc/lib/libbcm_host.so)
+add_executable(serialnumber_vcgencmd_using_bcm_host serialnumber_vcgencmd_using_bcm_host.c)
+target_link_libraries(serialnumber_vcgencmd_using_bcm_host bcm_host)
 
+#--------------------------------------------------------------------------
+
+add_executable(serialnumber_vcgencmd_via_ioctl serialnumber_vcgencmd_via_ioctl.c)
